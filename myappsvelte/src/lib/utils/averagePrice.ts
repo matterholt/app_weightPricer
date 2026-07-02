@@ -2,11 +2,11 @@ export function converToPenies(floatPrice) {
 	const [dollar, cents] = floatPrice.split('.');
 	const temp = Number(dollar);
 	const dollarCents = temp * 100;
+
 	return dollarCents + Number(cents);
 }
 
 export function dollarAmount(pennyAmount: string) {
-	console.log(pennyAmount);
 	const numberConvert = Number(pennyAmount);
 	const cents = numberConvert % 100;
 	const dollars = Math.floor(numberConvert / 100);

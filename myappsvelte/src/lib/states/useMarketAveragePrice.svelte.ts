@@ -6,7 +6,7 @@ interface MarketPriceRange {
 }
 
 export const marketPricesState = $state({
-	average: '1100.11',
+	average: '2.00',
 	lowValue: '1.01',
 	highValue: '10.10'
 });

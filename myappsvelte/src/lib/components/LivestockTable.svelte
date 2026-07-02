@@ -11,7 +11,7 @@
 			<td>{livestock?.weight}</td>
 			<td>{livestock?.visual_id}</td>
 			<td>{livestock?.gender}</td>
-			<td>${livestock?.dollarAmount}</td>
+			<td>${livestock?.profitedCash}</td>
 			{#if livestock.isSold}
 				<td> </td>
 			{:else}
@@ -45,7 +45,7 @@
 	</div>
 	<div>
 		<h2>Sold Animals</h2>
-		<p>Total:{collectMoney()}</p>
+		<p>Total: ${collectMoney()}</p>
 		<table class="table">
 			<thead>
 				<tr>
