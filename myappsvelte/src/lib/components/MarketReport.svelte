@@ -1,13 +1,10 @@
-<script module>
-	import { averagePrice } from '../utils/averagePrice';
+<script>
+	import { averagePriceState, updateAverage } from '../states/useMarketAveragePrice.svelte';
+
 	const priceRange_mtHope = $state({ lowValue: '3.25', highValue: '4.00' });
 	const priceRange_monrow = $state({ lowValue: '1.80', highValue: '3.40' });
-
-	let calAveragePrice = $derived.by(() => {
-		let mtHopePrices = Object.values(priceRange_mtHope);
-		let monrowPrices = Object.values(priceRange_monrow);
-		let average = averagePrice([...mtHopePrices, ...monrowPrices]);
-		return { average };
+	$effect(() => {
+		updateAverage([priceRange_mtHope, priceRange_monrow]);
 	});
 </script>
 
@@ -37,10 +34,9 @@
 
 <div class=" flex flex-col items-center m-5">
 	<h2 class="text-2xl font-bold">Market Report for Lambs</h2>
-
 	<div class="flex justify-between w-full p-5 gap-10">
 		<div class="place-content-center grid rounded-full border border-amber-300 w-35 h-35">
-			{@render priceRange(calAveragePrice)}
+			{@render priceRange(averagePriceState)}
 		</div>
 		<div class="flex flex-col gap-4">
 			<div>

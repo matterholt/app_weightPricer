@@ -1,6 +1,6 @@
 <script module>
-	import MarketReport from '../components/MarketReport.svelte';
-	import LivestockTable from '../components/LivestockTable.svelte';
+	import MarketReport from '../lib/components/MarketReport.svelte';
+	import LivestockTable from '../lib/components/LivestockTable.svelte';
 
 	let temp = [
 		{
@@ -77,8 +77,6 @@
 		}
 	];
 </script>
-
-<h1>Estimated prices for lambs</h1>
 
 <div>
 	<MarketReport />

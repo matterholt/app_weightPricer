@@ -1,7 +1,6 @@
 function converToPenies(floatPrice) {
 	const [dollar, cents] = floatPrice.split('.');
 	const temp = Number(dollar);
-	console.log(temp);
 	const dollarCents = temp * 100;
 	return dollarCents + Number(cents);
 }

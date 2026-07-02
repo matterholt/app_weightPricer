@@ -1,8 +1,11 @@
 <script lang="ts">
+	import { averagePriceState } from '../states/useMarketAveragePrice.svelte';
 	let props = $props();
 
-	function pricePerWeight() {
-		return '$4.23';
+	function pricePerWeight(animalWeight: string) {
+		console.log('GGEETT', animalWeight);
+		console.log('GEETT', averagePriceState);
+		return (Number(animalWeight) * Number(averagePriceState.average)).toFixed(2);
 	}
 </script>
 
@@ -14,7 +17,7 @@
 			<td>{livestock?.weight}</td>
 			<td>{livestock?.visual_id}</td>
 			<td>{livestock?.gender}</td>
-			<td>{pricePerWeight(livestock?.weight)}</td>
+			<td>${pricePerWeight(livestock?.weight)}</td>
 		</tr>
 	{/each}
 {/snippet}
