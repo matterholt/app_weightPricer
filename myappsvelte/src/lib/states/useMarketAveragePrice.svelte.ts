@@ -1,15 +1,27 @@
 import { averagePrice } from '../utils/averagePrice';
 
-export const averagePriceState = $state({
-	average: '1100.11'
-});
-
 interface MarketPriceRange {
 	lowValue: string;
 	highValue: string;
 }
 
+export const marketPricesState = $state({
+	average: '1100.11',
+	lowValue: '1.01',
+	highValue: '10.10'
+});
+
+function setLowHigh(priceRanges: string[]) {
+	marketPricesState.highValue = priceRanges.reduce((min, value) => {
+		return Number(value) > Number(min) ? value : min;
+	});
+	marketPricesState.lowValue = priceRanges.reduce((min, value) => {
+		return Number(value) < Number(min) ? value : min;
+	});
+}
+
 export function updateAverage(auctionPrices: MarketPriceRange[]) {
 	const priceList = auctionPrices.flatMap((x) => Object.values(x));
-	averagePriceState.average = averagePrice(priceList);
+	setLowHigh(priceList);
+	marketPricesState.average = averagePrice(priceList);
 }
