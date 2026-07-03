@@ -1,5 +1,6 @@
 <script>
 	import { marketPricesState, updateAverage } from '../states/useMarketAveragePrice.svelte';
+	import TitleBlock from './general/TitleBlock.svelte';
 
 	const priceRange_mtHope = $state({ lowValue: '3.25', highValue: '4.00' });
 	const priceRange_monrow = $state({ lowValue: '1.80', highValue: '3.40' });
@@ -40,7 +41,7 @@
 {/snippet}
 
 <div class=" flex flex-col items-center m-5">
-	<h2 class="text-2xl font-bold">Market Report for Lambs</h2>
+	<TitleBlock>Market Report for Lambs</TitleBlock>
 	<div class="flex justify-between w-full p-5">
 		<div class="rounded-xl border border-amber-300">
 			{@render priceRange(marketPricesState, true)}
