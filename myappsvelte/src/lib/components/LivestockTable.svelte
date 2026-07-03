@@ -1,6 +1,19 @@
 <script lang="ts">
-	import { livestockState, collectMoney } from '../states/useOwnerLivestock.svelte';
+	import { livestockState } from '../states/useOwnerLivestock.svelte';
 	import type { LiveStockEntry } from '../states/useOwnerLivestock.svelte';
+	import { collectMoney } from '../utils/averagePrice';
+
+	let soldLivestock = $state(livestockState.rollcall.filter((x) => x.isSold));
+	let availableLivestock = $state(livestockState.rollcall.filter((x) => x.isSold !== true));
+
+	let grossIncome = $derived(collectMoney(soldLivestock));
+
+	$effect(() => {
+		setInterval(() => {
+			soldLivestock = livestockState.rollcall.filter((x) => x.isSold);
+			availableLivestock = livestockState.rollcall.filter((x) => x.isSold !== true);
+		}, livestockState?.rollcall);
+	});
 </script>
 
 {#snippet figure(livestockEntry: LiveStockEntry[])}
@@ -11,12 +24,12 @@
 			<td>{livestock?.weight}</td>
 			<td>{livestock?.visual_id}</td>
 			<td>{livestock?.gender}</td>
-			<td>${livestock?.profitedCash}</td>
+			<td>${livestock?.profitedCash}-updatable</td>
 			{#if livestock.isSold}
 				<td> </td>
 			{:else}
 				<td>
-					<input type="checkbox" checked={livestock.isSold} class="toggle" />
+					<input type="checkbox" bind:checked={livestock.isSold} class="toggle" />
 				</td>
 			{/if}
 		</tr>
@@ -39,13 +52,13 @@
 				</tr>
 			</thead>
 			<tbody>
-				{@render figure(livestockState.livestockAvailable)}
+				{@render figure(availableLivestock)}
 			</tbody>
 		</table>
 	</div>
 	<div>
 		<h2>Sold Animals</h2>
-		<p>Total: ${collectMoney()}</p>
+		<p>Total: ${grossIncome}</p>
 		<table class="table">
 			<thead>
 				<tr>
@@ -58,7 +71,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				{@render figure(livestockState.livestockSold)}
+				{@render figure(soldLivestock)}
 			</tbody>
 		</table>
 	</div>

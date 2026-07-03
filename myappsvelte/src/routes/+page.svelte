@@ -4,6 +4,9 @@
 </script>
 
 <div>
+	<div>
+		with a pop up or what ever it is call have a form that will update or add to the livestock list
+	</div>
 	<MarketReport />
 	<LivestockTable />
 </div>

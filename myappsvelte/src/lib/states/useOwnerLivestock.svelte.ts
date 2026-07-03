@@ -8,7 +8,6 @@ export interface LiveStockEntry {
 }
 import { marketPricesState } from './useMarketAveragePrice.svelte';
 
-import { addUpPrices, dollarAmount } from '../utils/averagePrice';
 import { pricePerWeight } from '../utils/livestockActions';
 
 const livestockData: LiveStockEntry[] = [
@@ -102,17 +101,6 @@ const initialSetup = livestockData.map((x) => {
 
 export const livestockState: {
 	rollcall: LiveStockEntry[];
-	livestockSold?: LiveStockEntry[];
-	livestockAvailable?: LiveStockEntry[];
 } = $state({
-	rollcall: initialSetup,
-	livestockSold: initialSetup.filter((x) => x.isSold),
-	livestockAvailable: initialSetup.filter((x) => x.isSold !== true)
+	rollcall: initialSetup
 });
-
-export function collectMoney() {
-	const soldPrices = livestockState.livestockSold?.flatMap((x) => x.profitedCash);
-
-	const howManyPennies = addUpPrices(soldPrices);
-	return dollarAmount(howManyPennies);
-}
