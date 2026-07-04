@@ -4,9 +4,12 @@
 	import { collectMoney } from '../utils/averagePrice';
 
 	import TitleBlock from './general/TitleBlock.svelte';
+	import AnimalDialog from './general/AnimalDialog.svelte';
 
 	let soldLivestock = $state(livestockState.rollcall.filter((x) => x.isSold));
 	let availableLivestock = $state(livestockState.rollcall.filter((x) => x.isSold !== true));
+
+	let animalStats: LiveStockEntry | undefined = $state();
 
 	let grossIncome = $derived(collectMoney(soldLivestock));
 
@@ -18,10 +21,17 @@
 	});
 </script>
 
-{#snippet figure(livestockEntry: LiveStockEntry[])}
+{#snippet tableRow(livestockEntry: LiveStockEntry[])}
 	{#each livestockEntry as livestock, index (livestock?.tag_id)}
 		<tr class={livestock.isSold ? 'bg-accent' : 'bg-primary'}>
 			<th>{index + 1}</th>
+			<td>
+				<button
+					onclick={() => (animalStats = livestock)}
+					command="show-modal"
+					commandfor="my-dialog">edit dialog{livestock?.tag_id}</button
+				>
+			</td>
 			<td>{livestock?.tag_id}</td>
 			<td>{livestock?.weight}</td>
 			<td>{livestock?.visual_id}</td>
@@ -40,7 +50,8 @@
 
 <div class="overflow-x-auto">
 	<TitleBlock>Available Animals</TitleBlock>
-	<table class="table table-xs">
+	<AnimalDialog animalDetails={animalStats} host={animalStats?.tag_id} />
+	<table class="table">
 		<thead>
 			<tr>
 				<th></th>
@@ -53,7 +64,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			{@render figure(availableLivestock)}
+			{@render tableRow(availableLivestock)}
 		</tbody>
 	</table>
 </div>
@@ -72,7 +83,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			{@render figure(soldLivestock)}
+			{@render tableRow(soldLivestock)}
 		</tbody>
 	</table>
 </div>
