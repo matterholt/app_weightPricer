@@ -1,12 +1,5 @@
-export interface LiveStockEntry {
-	tag_id: string;
-	weight: string;
-	visual_id?: string;
-	gender: string;
-	profitedCash?: string;
-	isSold: boolean;
-}
 import { marketPricesState } from './useMarketAveragePrice.svelte';
+import type { LiveStockEntry } from '../daTypes/livestock';
 
 import { pricePerWeight } from '../utils/livestockActions';
 

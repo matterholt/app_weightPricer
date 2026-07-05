@@ -24,9 +24,9 @@ export function averagePrice(prices) {
 	const addedPrices = addUpPrices(prices);
 	return dollarAmount(Math.floor(addedPrices / prices.length));
 }
-export function collectMoney(gross) {
-	const soldPrices = gross?.flatMap((x) => x.profitedCash);
 
+export function totaledAmountSold(gross) {
+	const soldPrices = gross?.flatMap((x) => x.profitedCash);
 	const howManyPennies = addUpPrices(soldPrices);
 	return dollarAmount(howManyPennies);
 }
