@@ -1,6 +1,9 @@
 <script module>
 	import MarketReport from '../lib/components/feature/MarketReport.svelte';
 	import LivestockTable from '../lib/components/feature/LivestockTable.svelte';
+	import TitleBlock from '$lib/components/general/TitleBlock.svelte';
+
+	let activeTab = $state('available');
 </script>
 
 <div>
@@ -10,7 +13,32 @@
 
 	<div class="w-fit m-10">
 		<MarketReport />
-		<div>livestock table actions</div>
-		<LivestockTable />
+		<TitleBlock>Available Animals</TitleBlock>
+		<div role="tablist" class="tabs tabs-lift">
+			<button
+				aria-label="tab"
+				onclick={() => (activeTab = 'available')}
+				class={[activeTab === 'available' ? 'tab-active' : '', 'tab']}
+			>
+				Available Animals
+			</button>
+			<button
+				aria-label="tab"
+				onclick={() => (activeTab = 'sold')}
+				class={[activeTab === 'sold' ? 'tab-active' : '', 'tab']}
+			>
+				Sold Animals
+			</button>
+			<button
+				aria-label="tab"
+				onclick={() => (activeTab = 'add')}
+				class={[activeTab === 'add' ? 'tab-active' : '', 'tab']}
+			>
+				Sold Animals
+			</button>
+		</div>
+		{#if activeTab == 'available'}
+			<LivestockTable />
+		{/if}
 	</div>
 </div>

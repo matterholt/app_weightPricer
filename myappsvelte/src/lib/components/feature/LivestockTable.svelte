@@ -23,14 +23,16 @@
 	{#each livestockEntry as livestock (livestock?.tag_id)}
 		<tr class={livestock.isSold ? 'bg-gray-900' : ''}>
 			<th>
-				<button
-					class="btn"
-					onclick={() => (animalStats = livestock)}
-					command="show-modal"
-					commandfor="my-dialog"
-				>
-					✏️
-				</button>
+				{#if !livestock.isSold}
+					<button
+						class="btn"
+						onclick={() => (animalStats = livestock)}
+						command="show-modal"
+						commandfor="my-dialog"
+					>
+						✏️
+					</button>
+				{/if}
 			</th>
 
 			<td>{livestock?.tag_id}</td>
@@ -38,9 +40,7 @@
 			<td>{livestock?.visual_id}</td>
 			<td>{livestock?.gender}</td>
 			<td>$ {livestock?.profitedCash}</td>
-			{#if livestock.isSold}
-				<td> </td>
-			{:else}
+			{#if !livestock.isSold}
 				<td>
 					<input type="checkbox" bind:checked={livestock.isSold} class="toggle" />
 				</td>
@@ -50,7 +50,6 @@
 {/snippet}
 
 <div class="overflow-x-auto">
-	<TitleBlock>Available Animals</TitleBlock>
 	<AnimalDialog animalDetails={animalStats} host={animalStats?.tag_id} />
 	<table class="table">
 		<thead>
@@ -69,7 +68,7 @@
 		</tbody>
 	</table>
 </div>
-<div>
+<!-- <div class="outline p-4 m-4 rounded-2xl">
 	<TitleBlock>Sold Animals</TitleBlock>
 	<p>Total: ${grossIncome}</p>
 	<table class="table">
@@ -87,4 +86,4 @@
 			{@render tableRow(soldLivestock)}
 		</tbody>
 	</table>
-</div>
+</div> -->
