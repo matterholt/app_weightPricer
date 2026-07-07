@@ -1,6 +1,7 @@
 <script module>
-	import MarketReport from '../lib/components/feature/MarketReport.svelte';
-	import LivestockTable from '../lib/components/feature/LivestockTable.svelte';
+	import MarketReport from '$lib/components/feature/MarketReport.svelte';
+	import LivestockTable from '$lib/components/feature/LivestockTable.svelte';
+	import NewLivestock from '$lib/components/feature/adding_livestock/NewLivestock.svelte';
 	import TitleBlock from '$lib/components/general/TitleBlock.svelte';
 
 	let activeTab = $state('available');
@@ -34,11 +35,17 @@
 				onclick={() => (activeTab = 'add')}
 				class={[activeTab === 'add' ? 'tab-active' : '', 'tab']}
 			>
-				Sold Animals
+				Add Animal
 			</button>
 		</div>
 		{#if activeTab == 'available'}
 			<LivestockTable />
+		{/if}
+		{#if activeTab == 'sold'}
+			table listing sold animals
+		{/if}
+		{#if activeTab == 'add'}
+			<NewLivestock />
 		{/if}
 	</div>
 </div>
