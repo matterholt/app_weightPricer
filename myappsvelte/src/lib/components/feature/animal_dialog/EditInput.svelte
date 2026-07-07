@@ -1,11 +1,16 @@
 <script lang="ts">
 	type InputTypes = 'text' | 'number';
+	import { editEntry } from './inputstate.svelte';
 
 	let {
 		inputType,
 		label,
 		value
-	}: { inputType: InputTypes; label?: string; value?: string | number } = $props();
+	}: {
+		inputType: InputTypes;
+		label?: string;
+		value?: string | number;
+	} = $props();
 </script>
 
 {#if inputType === 'text'}
@@ -20,3 +25,4 @@
 		<input type="number" {value} />
 	</label>
 {/if}
+<button class="btn" onclick={() => (editEntry.input = '')}>👍</button>

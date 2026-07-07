@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
 	import type { LiveStockEntry } from '../../../daTypes/livestock';
 	import { marketPricesState } from '../../../states/useMarketAveragePrice.svelte';
 	import { pricePerWeight } from '../../../utils/livestockActions';
 
 	import EditInput from './EditInput.svelte';
+	import { editEntry } from './inputstate.svelte';
 
 	let { animalDetails }: { animalDetails: LiveStockEntry } = $props();
 
@@ -17,7 +17,6 @@
 	});
 
 	let editMode: boolean = $state(false);
-	let editEntry = $state('');
 </script>
 
 <dialog id="my-dialog" class="modal">
@@ -31,25 +30,30 @@
 		</div>
 		<div class="divider"></div>
 
-		<div class="grid grid-cols-2 grid-rows-4">
+		<div class="grid grid-cols-2 grid-rows-4 gap-x-5">
 			<p>Visual ID: {animalDetails?.visual_id}</p>
 			<p>Gender: {animalDetails?.gender}</p>
 
-			{#if editEntry === 'animalWeight'}
-				<EditInput inputType="number" label="Weight" value={animalDetails?.weight} {editEntry} />
+			{#if editEntry.input === 'animalWeight'}
+				<div class="flex gap-2">
+					<EditInput inputType="number" label="Weight" value={animalDetails?.weight} />
+				</div>
 			{:else}
-				<button class="flex gap-5 p-2" onclick={() => (editEntry = 'animalWeight')}
+				<button class="flex gap-5 p-2" onclick={() => (editEntry.input = 'animalWeight')}
 					>Weight: <span>
 						{animalDetails?.weight}
 					</span></button
 				>
 			{/if}
 
-			{#if editEntry === 'profitedCash'}
-				<EditInput inputType="number" label="Sell Price" value={animalDetails?.profitedCash} />
+			{#if editEntry.input === 'profitedCash'}
+				<div class="flex gap-2">
+					<EditInput inputType="number" label="Sell Price" value={animalDetails?.profitedCash} />
+				</div>
 			{:else}
-				<button class="flex gap-5 p-2" onclick={() => (editEntry = 'profitedCash')}
-					>Sell Price: <span>
+				<button class="flex gap-5 p-2" onclick={() => (editEntry.input = 'profitedCash')}
+					>Sell Price: <span
+						>$
 						{animalDetails?.profitedCash}
 					</span></button
 				>
@@ -63,8 +67,12 @@
 			</div>
 		</div>
 		<div class="modal-action">
-			<button class="btn" onclick={() => (editMode = !editMode)}>Edit</button>
-			<button class="btn" commandfor="my-dialog" command="close">Close</button>
+			<button
+				class="btn"
+				commandfor="my-dialog"
+				onclick={() => (editEntry.input = '')}
+				command="close">Save & Close</button
+			>
 		</div>
 	</div>
 </dialog>
