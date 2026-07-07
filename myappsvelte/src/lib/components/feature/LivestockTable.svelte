@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { livestockState } from '../states/useOwnerLivestock.svelte';
-	import type { LiveStockEntry } from '../daTypes/livestock';
-	import { totaledAmountSold } from '../utils/averagePrice';
+	import { livestockState } from '../../states/useOwnerLivestock.svelte';
+	import type { LiveStockEntry } from '../../daTypes/livestock';
+	import { totaledAmountSold } from '../../utils/averagePrice';
 
-	import TitleBlock from './general/TitleBlock.svelte';
-	import AnimalDialog from './feature/animal_dialog/AnimalDialog.svelte';
+	import TitleBlock from '../general/TitleBlock.svelte';
+	import AnimalDialog from '../feature/animal_dialog/AnimalDialog.svelte';
 
 	let soldLivestock = $state(livestockState.rollcall.filter((x) => x.isSold));
 	let availableLivestock = $state(livestockState.rollcall.filter((x) => x.isSold !== true));
@@ -20,8 +20,8 @@
 </script>
 
 {#snippet tableRow(livestockEntry: LiveStockEntry[])}
-	{#each livestockEntry as livestock, index (livestock?.tag_id)}
-		<tr class={livestock.isSold ? 'bg-accent' : ''}>
+	{#each livestockEntry as livestock (livestock?.tag_id)}
+		<tr class={livestock.isSold ? 'bg-gray-900' : ''}>
 			<th>
 				<button
 					class="btn"
@@ -72,7 +72,7 @@
 <div>
 	<TitleBlock>Sold Animals</TitleBlock>
 	<p>Total: ${grossIncome}</p>
-	<table class="table table-xs">
+	<table class="table">
 		<thead>
 			<tr>
 				<th></th>

@@ -1,6 +1,6 @@
 <script>
-	import { marketPricesState, updateAverage } from '../states/useMarketAveragePrice.svelte';
-	import TitleBlock from './general/TitleBlock.svelte';
+	import { marketPricesState, updateAverage } from '../../states/useMarketAveragePrice.svelte';
+	import TitleBlock from '../general/TitleBlock.svelte';
 
 	const priceRange_mtHope = $state({ lowValue: '3.25', highValue: '4.00' });
 	const priceRange_monrow = $state({ lowValue: '1.80', highValue: '3.40' });
