@@ -15,8 +15,6 @@
 			highCost: pricePerWeight(animalDetails?.weight, marketPricesState.highValue)
 		};
 	});
-
-	let editMode: boolean = $state(false);
 </script>
 
 <dialog id="my-dialog" class="modal">
