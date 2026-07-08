@@ -1,8 +1,11 @@
 export interface LiveStockEntry {
 	tag_id: string;
-	weight: string;
 	visual_id?: string;
 	gender: string;
+	weight?: string;
 	profitedCash?: string;
-	isSold: boolean;
+	isSold?: boolean;
+}
+export interface NewLiveStock extends LiveStockEntry {
+	headCount: number;
 }

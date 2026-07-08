@@ -1,5 +1,5 @@
 import { marketPricesState } from './useMarketAveragePrice.svelte';
-import type { LiveStockEntry } from '../daTypes/livestock';
+import type { LiveStockEntry, NewLiveStock } from '../daTypes/livestock';
 
 import { pricePerWeight } from '../utils/livestockActions';
 
@@ -97,3 +97,18 @@ export const livestockState: {
 } = $state({
 	rollcall: initialSetup
 });
+
+export function storeLivestockID() {
+	return livestockState.rollcall.map((x) => x.tag_id);
+}
+
+export function updateRollcall(newEntries: NewLiveStock[]) {
+	const cleanup = newEntries.map((x) => ({
+		gender: x.gender,
+		tag_id: x.tag_id,
+		visual_id: x.visual_id,
+		weight: x.weight
+	}));
+
+	livestockState.rollcall = [...livestockState.rollcall, ...cleanup];
+}
