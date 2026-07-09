@@ -5,30 +5,66 @@ import { pricePerWeight } from '../utils/livestockActions';
 
 const livestockData: LiveStockEntry[] = [
 	{
-		tag_id: '21',
-		weight: '38',
-		visual_id: 'Petes',
+		tag_id: '20',
+		weight: '63',
+		visual_id: 'all white curly hair',
+		gender: 'female',
+		isSold: false
+	},
+
+	{
+		tag_id: '25',
+		weight: '40.5',
+		visual_id: 'black with white marks on head',
+		gender: 'female',
+		isSold: false
+	},
+	{
+		tag_id: '27',
+		weight: '40',
+		visual_id: 'black with white back feet',
 		gender: 'male',
-		isSold: true
+		isSold: false
+	},
+	{
+		tag_id: '24',
+		weight: '55.5',
+		visual_id: 'white brown dot, currly hair',
+		gender: 'male',
+		isSold: false
+	},
+	{
+		tag_id: '26',
+		weight: '39',
+		visual_id: 'all black wool like hair',
+		gender: 'male',
+		isSold: false
+	},
+	{
+		tag_id: '21',
+		weight: '50.5',
+		visual_id: 'all white short hair',
+		gender: 'female',
+		isSold: false
 	},
 	{
 		tag_id: '23',
 		weight: '40',
 		visual_id: 'Isaac',
 		gender: 'female',
-		isSold: false
+		isSold: true
 	},
 	{
 		tag_id: '19',
-		weight: '42',
-		visual_id: 'cow',
+		weight: '66',
+		visual_id: 'holstein like pattern ',
 		gender: 'female',
 		isSold: false
 	},
 	{
 		tag_id: '14',
-		weight: '47',
-		visual_id: 'Isaac',
+		weight: '62.5',
+		visual_id: 'brown spot curly hair',
 		gender: 'male',
 		isSold: false
 	},
@@ -37,13 +73,14 @@ const livestockData: LiveStockEntry[] = [
 		weight: '47',
 		visual_id: 'mocha',
 		gender: 'female',
-		isSold: false
+		isSold: true
 	},
 	{
 		tag_id: '20',
 		weight: '48',
 		visual_id: '',
-		gender: 'female'
+		gender: 'female',
+		isSold: true
 	},
 	{
 		tag_id: '16',
@@ -70,7 +107,8 @@ const livestockData: LiveStockEntry[] = [
 		tag_id: '13',
 		weight: '57',
 		visual_id: '',
-		gender: 'female'
+		gender: 'female',
+		isSold: true
 	},
 	{
 		tag_id: '18',

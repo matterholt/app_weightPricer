@@ -11,15 +11,11 @@
 
 	let animalStats: LiveStockEntry | undefined = $state();
 
-	function sortedByWeight(livestock) {
-		return livestock.sort((a, b) => Number(a.weight) - Number(b.weight));
-	}
-
 	let grossIncome = $derived(totaledAmountSold(soldLivestock));
 
 	$effect(() => {
 		soldLivestock = livestockState.rollcall.filter((x) => x.isSold);
-		availableLivestock = sortedByWeight(livestockState.rollcall.filter((x) => x.isSold !== true));
+		availableLivestock = livestockState.rollcall.filter((x) => x.isSold !== true);
 	});
 </script>
 
@@ -53,22 +49,22 @@
 	{/each}
 {/snippet}
 
-<div class="overflow-x-auto">
-	<AnimalDialog animalDetails={animalStats} host={animalStats?.tag_id} />
+<div class="outline p-4 m-4 rounded-2xl">
+	<TitleBlock>Sold Animals</TitleBlock>
+	<p>Total: ${grossIncome}</p>
 	<table class="table">
 		<thead>
 			<tr>
 				<th></th>
 				<th>Tag ID</th>
-				<th>Visual ID</th>
 				<th>Weight</th>
+				<th>Visual ID</th>
 				<th>Gender</th>
-				<th>Average Price</th>
-				<th>Sold</th>
+				<th>Sold Price</th>
 			</tr>
 		</thead>
 		<tbody>
-			{@render tableRow(availableLivestock)}
+			{@render tableRow(soldLivestock)}
 		</tbody>
 	</table>
 </div>

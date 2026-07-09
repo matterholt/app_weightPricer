@@ -6,9 +6,9 @@ interface MarketPriceRange {
 }
 
 export const marketPricesState = $state({
-	average: '2.00',
-	lowValue: '1.01',
-	highValue: '10.10'
+	average: '2.90',
+	lowValue: '2.90',
+	highValue: '3.77'
 });
 
 function setLowHigh(priceRanges: string[]) {

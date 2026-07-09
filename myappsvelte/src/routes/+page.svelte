@@ -8,21 +8,6 @@
 </script>
 
 <div>
-	<div>
-		<form method="POST">
-			<label>
-				Email
-				<input name="email" type="email" />
-			</label>
-			<label>
-				Password
-				<input name="password" type="password" />
-			</label>
-			<button>Log in</button>
-		</form>
-		with a pop up or what ever it is call have a form that will update or add to the livestock list
-	</div>
-
 	<div class="w-fit m-10">
 		<MarketReport />
 		<TitleBlock>Available Animals</TitleBlock>
