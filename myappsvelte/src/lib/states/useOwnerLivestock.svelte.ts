@@ -133,7 +133,8 @@ const initialSetup = livestockData.map((x) => {
 export const livestockState: {
 	rollcall: LiveStockEntry[];
 } = $state({
-	rollcall: initialSetup
+	rollcall: initialSetup,
+	toSell : [] // have a group of animals to sell
 });
 
 export function storeLivestockID() {
