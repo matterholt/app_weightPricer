@@ -20,7 +20,6 @@
    function updateToSellList(tagId){
      if(sellingCollection.includes(tagId)) return true
 
-sellingCollection = [...sellingCollection, tagId]
      return false
 
    }

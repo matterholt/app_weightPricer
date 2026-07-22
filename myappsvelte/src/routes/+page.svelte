@@ -1,17 +1,23 @@
 <script module>
-	import MarketReport from '$lib/components/feature/MarketReport.svelte';
+	import AuctionMarketReport from '$lib/components/feature/market_report/AuctionMarketReport.svelte';
 	import LivestockTable from '$lib/components/feature/LivestockTable.svelte';
 	import NewLivestock from '$lib/components/feature/adding_livestock/NewLivestock.svelte';
 	import TitleBlock from '$lib/components/general/TitleBlock.svelte';
 
-	let activeTab = $state('available');
+	let activeTab = $state('marketReport');
 </script>
 
 <div>
 	<div class="w-fit m-10">
-		<MarketReport />
 		<TitleBlock>Available Animals</TitleBlock>
 		<div role="tablist" class="tabs tabs-lift">
+			<button
+				aria-label="tab"
+				onclick={() => (activeTab = 'marketReport')}
+				class={[activeTab === 'marketReport' ? 'tab-active' : '', 'tab']}
+			>
+				Market Report
+			</button>
 			<button
 				aria-label="tab"
 				onclick={() => (activeTab = 'available')}
@@ -34,6 +40,9 @@
 				Add Animal
 			</button>
 		</div>
+		{#if activeTab == 'marketReport'}
+			<AuctionMarketReport />
+		{/if}
 		{#if activeTab == 'available'}
 			<LivestockTable />
 		{/if}
