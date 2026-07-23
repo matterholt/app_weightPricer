@@ -17,8 +17,8 @@ const sample = [
 				auction_date: '2026-07-16'
 			},
 			{
-				wt_heavy: 61,
-				wt_light: 80,
+				wt_heavy: 80,
+				wt_light: 60,
 				wt_avg: 65,
 				price_low: 200,
 				price_high: 320,
