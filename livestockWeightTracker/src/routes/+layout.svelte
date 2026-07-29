@@ -22,4 +22,53 @@ console.log(page.url.pathname )
     <a href="sold"role="tab"   class={["tab",page.url.pathname === '/sold'? 'tab-active' : "" ] }>sold</a>
     </div>
 {@render children()}
-``
+
+
+<div role="tablist" class="tabs tabs-border">
+
+
+
+        <a
+
+            href="/"
+            role="tab"
+            class={[
+                "tab",
+                page.url.pathname === "/"
+                    ? "tab-active"
+                    : "",
+            ]}>Main</a
+        >
+
+    <a
+
+        href="livestock"
+        role="tab"
+        class={[
+            "tab",
+            page.url.pathname === "/livestock"
+                ? "tab-active"
+                : "",
+        ]}>Livestocks</a
+    >
+    <a
+        href="market_report"
+        role="tab"
+        class={[
+            "tab",
+            page.url.pathname === "/market_report" ? "tab-active" : "",
+        ]}>Market Report</a
+    >
+    <a
+        href="available_stock"
+        role="tab"
+        class={["tab", page.url.pathname === "/available_stock" ? "tab-active" : ""]}
+        >Available Stock</a
+    >
+    <a
+        href="sold_stock"
+        role="tab"
+        class={["tab", page.url.pathname === "/sold_stock" ? "tab-active" : ""]}
+        >Sold Stock</a
+    >
+</div>

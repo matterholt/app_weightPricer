@@ -1,8 +1,11 @@
 <script>
+    import TitleBlock from "$lib/components/general/TitleBlock.svelte";
     let { data } = $props();
 </script>
 
-<h1>LIVESTOCK</h1>
+<TitleBlock>
+    In Stock
+</TitleBlock>
 
 <div>
     <ul class="list bg-base-100 rounded-box shadow-md">
